@@ -2,58 +2,6 @@ import streamlit as st
 import re
 import random
 
-# Set page configuration for light theme
-st.set_page_config(
-    page_title="Text Humanizer",
-    page_icon="✍️",
-    layout="wide",
-    initial_sidebar_state="auto"
-)
-
-# Light theme custom styling
-st.markdown("""
-<style>
-    /* Reset to light theme */
-    .stApp {
-        background-color: #ffffff;
-        color: #000000;
-    }
-    
-    /* Main container */
-    .main {
-        background-color: #ffffff !important;
-        color: #000000 !important;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    }
-    
-    /* Text Input Areas */
-    .stTextArea > div > div > textarea {
-        background-color: #f8f9fa !important;
-        color: #000000 !important;
-        border: 1px solid #ced4da !important;
-    }
-    
-    /* Slider and Dropdown */
-    .stSlider, .stSelectbox {
-        background-color: #f1f3f5 !important;
-        border-radius: 8px !important;
-        padding: 10px !important;
-    }
-    
-    /* Buttons */
-    .stButton > button {
-        background-color: #2c3e50 !important;
-        color: white !important;
-        border-radius: 6px !important;
-        font-weight: 600 !important;
-    }
-    
-    .stButton > button:hover {
-        background-color: #34495e !important;
-    }
-</style>
-""", unsafe_allow_html=True)
-
 class TextHumanizer:
     def __init__(self):
         """
@@ -219,7 +167,7 @@ def main():
         )
 
     # Humanize button
-    if st.button("Humanize Text", use_container_width=True):
+    if st.button("Humanize Text", type="primary"):
         if input_text:
             # Humanize the text
             humanized_text = humanizer.humanize(input_text)
