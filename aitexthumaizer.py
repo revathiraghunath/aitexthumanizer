@@ -15,13 +15,14 @@ class TextHumanizer:
             self._refine_punctuation
         ]
 
-    def _simple_sentence_split(self, text: str) -> list:
+    def _simple_sentence_split(self, text):
         """
         Split text into sentences using regex
         """
-        return re.split(r'(?<=[.!?])\s+', text)
+        # Use a more robust sentence splitting regex
+        return re.split(r'(?<=[.!?])\s+', text.strip())
 
-    def _add_professional_transitions(self, text: str) -> str:
+    def _add_professional_transitions(self, text):
         """Add nuanced, professional-sounding transition words"""
         transition_mappings = {
             r'\b(Furthermore|Moreover|Additionally)\b': ['In light of this,', 'Considering this context,', 'From another perspective,'],
@@ -33,7 +34,7 @@ class TextHumanizer:
         
         return text
 
-    def _vary_sentence_structure(self, text: str) -> str:
+    def _vary_sentence_structure(self, text):
         """Introduce variations in sentence structure"""
         sentences = self._simple_sentence_split(text)
         
@@ -51,7 +52,7 @@ class TextHumanizer:
         
         return ' '.join(varied_sentences)
 
-    def _introduce_natural_hesitation(self, text: str) -> str:
+    def _introduce_natural_hesitation(self, text):
         """Add subtle, natural hesitation markers"""
         hesitation_markers = [' — ', ' ... ', ' well, ', ' actually, ']
         
@@ -63,7 +64,7 @@ class TextHumanizer:
         
         return ' '.join(words)
 
-    def _add_contextual_nuance(self, text: str) -> str:
+    def _add_contextual_nuance(self, text):
         """Add contextual nuance and professional qualifiers"""
         sentences = self._simple_sentence_split(text)
         
@@ -85,7 +86,7 @@ class TextHumanizer:
         
         return ' '.join(nuanced_sentences)
 
-    def _refine_punctuation(self, text: str) -> str:
+    def _refine_punctuation(self, text):
         """Refine punctuation for more natural flow"""
         # Replace overused punctuation
         text = re.sub(r'(!{2,})', '!', text)
@@ -104,7 +105,7 @@ class TextHumanizer:
         
         return ' '.join(refined_sentences)
 
-    def humanize(self, text: str) -> str:
+    def humanize(self, text):
         """
         Apply a random subset of humanization techniques
         
@@ -135,7 +136,8 @@ def main():
     humanizer = TextHumanizer()
 
     # App title and description
-    st.title("Text Humanizer")
+    st.set_page_config(page_title="Text Humanizer", page_icon="✍️")
+    st.title("🤖➡️👥 Text Humanizer")
     st.markdown("Transform AI-generated text into natural, conversational language")
 
     # Input section
@@ -200,7 +202,7 @@ def main():
     # Methodology section
     st.markdown("---")
     st.markdown("""
-    ### Our Approach to Text Humanization
+    ### How It Works
     - Advanced linguistic transformation techniques
     - Contextual language intelligence
     - Preserves original meaning and intent
