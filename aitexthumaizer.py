@@ -15,8 +15,8 @@ class EnhancedTextHumanizer:
         self.modifications = [
             self._add_professional_transitions,
             self._vary_sentence_structure,
-            self._introduce_professional_hesitation,  # Enhanced from previous version
-            self._add_enterprise_nuance,  # More sophisticated nuancing
+            self._introduce_professional_hesitation,
+            self._add_enterprise_nuance,
             self._refine_enterprise_punctuation
         ]
         self.transformation_history = []
@@ -166,9 +166,6 @@ class EnhancedTextHumanizer:
         
         return humanized_text
 
-# Rest of the Streamlit UI code remains similar to the previous version
-# ... (The main() function and other parts would be very close to the previous implementation)
-
 def main():
     # Page configuration with enterprise branding
     st.set_page_config(
@@ -203,8 +200,42 @@ def main():
     # Enterprise-style title
     st.markdown('<h1 class="enterprise-title">🏢 Enterprise Text Intelligence Platform</h1>', unsafe_allow_html=True)
     
-    # Rest of the main function would be similar to the previous version
-    # ... (with potentially more enterprise-focused UI elements)
+    # Input text area
+    input_text = st.text_area("Enter Text to Humanize", height=200)
+    
+    # Style and intensity selection
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        style = st.selectbox("Select Communication Style", 
+                              ["Professional", "Casual", "Technical"])
+    
+    with col2:
+        intensity = st.slider("Transformation Intensity", 1, 10, 5)
+    
+    # Humanize button
+    if st.button("Humanize Text"):
+        if input_text:
+            # Perform text humanization
+            humanized_text = st.session_state.humanizer.humanize(
+                input_text, 
+                style=style, 
+                intensity=intensity
+            )
+            
+            # Display original and humanized text
+            st.subheader("Original Text")
+            st.text(input_text)
+            
+            st.subheader("Humanized Text")
+            st.text(humanized_text)
+            
+            # Display transformation history
+            st.subheader("Transformation Details")
+            last_transformation = st.session_state.humanizer.transformation_history[-1]
+            st.json(last_transformation)
+        else:
+            st.warning("Please enter some text to humanize.")
 
 if __name__ == "__main__":
     main()
