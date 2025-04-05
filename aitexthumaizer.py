@@ -2,6 +2,58 @@ import streamlit as st
 import re
 import random
 
+# Set page configuration for light theme
+st.set_page_config(
+    page_title="Text Humanizer",
+    page_icon="✍️",
+    layout="wide",
+    initial_sidebar_state="auto"
+)
+
+# Light theme custom styling
+st.markdown("""
+<style>
+    /* Reset to light theme */
+    .stApp {
+        background-color: #ffffff;
+        color: #000000;
+    }
+    
+    /* Main container */
+    .main {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    /* Text Input Areas */
+    .stTextArea > div > div > textarea {
+        background-color: #f8f9fa !important;
+        color: #000000 !important;
+        border: 1px solid #ced4da !important;
+    }
+    
+    /* Slider and Dropdown */
+    .stSlider, .stSelectbox {
+        background-color: #f1f3f5 !important;
+        border-radius: 8px !important;
+        padding: 10px !important;
+    }
+    
+    /* Buttons */
+    .stButton > button {
+        background-color: #2c3e50 !important;
+        color: white !important;
+        border-radius: 6px !important;
+        font-weight: 600 !important;
+    }
+    
+    .stButton > button:hover {
+        background-color: #34495e !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 class TextHumanizer:
     def __init__(self):
         """
@@ -129,86 +181,13 @@ class TextHumanizer:
 
 def main():
     """
-    Streamlit application for enterprise-grade text humanization
+    Streamlit application for text humanization
     """
-    # Custom professional styling
-    st.markdown("""
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
-    
-    .main {
-        background-color: #f8f9fa;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    }
-    
-    /* Page Container */
-    .stApp {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem;
-        background-color: white;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    }
-    
-    /* Typography */
-    h1 {
-        color: #2c3e50;
-        font-weight: 600;
-        text-align: center;
-        margin-bottom: 1.5rem;
-    }
-    
-    /* Input and Output Containers */
-    .stTextArea > div > div > textarea {
-        border: 1px solid #e9ecef;
-        border-radius: 8px;
-        background-color: #f8f9fa;
-        font-size: 16px;
-        line-height: 1.6;
-        padding: 12px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-    
-    /* Control Elements */
-    .stSlider, .stSelectbox {
-        background-color: #f1f3f5;
-        border-radius: 8px;
-        padding: 10px;
-        margin-bottom: 1rem;
-    }
-    
-    /* Primary Action Button */
-    .stButton > button {
-        background-color: #2c3e50;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        padding: 12px 24px;
-        transition: all 0.3s ease;
-    }
-    
-    .stButton > button:hover {
-        background-color: #34495e;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transform: translateY(-2px);
-    }
-    
-    /* Informational Sections */
-    .stMarkdown {
-        color: #495057;
-        line-height: 1.7;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
     # Initialize the humanizer
     humanizer = TextHumanizer()
 
-    # Main application title
-    st.title("Text Humanization Platform")
+    # App title and description
+    st.title("Text Humanizer")
     st.markdown("Transform AI-generated text into natural, conversational language")
 
     # Input section
